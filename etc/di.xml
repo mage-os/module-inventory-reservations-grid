@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="catalog_inventory_reservation_listing_data_source" xsi:type="string">MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="const">MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation::TABLE_NAME</argument>
+            <argument name="resourceModel" xsi:type="string">MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation</argument>
+            <argument name="model" xsi:type="string">MageOS\InventoryReservationsGrid\Model\Reservation</argument>
+        </arguments>
+    </type>
+
+
+    <virtualType name="MageOSReservationCategoryCollection"
+                 type="MageOS\InventoryReservationsGrid\Ui\DataProvider\Reservation\ListingDataProvider">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">inventory_reservation</argument>
+            <argument name="resourceModel" xsi:type="string">MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation</argument>
+        </arguments>
+    </virtualType>
+</config>

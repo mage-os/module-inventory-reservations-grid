@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">catalog_inventory_reservation_listing.catalog_inventory_reservation_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="catalog-inventory-reservation-clear-button" class="MageOS\InventoryReservationsGrid\Block\Adminhtml\Reservation\CleanButton"/>
+        </buttons>
+        <spinner>catalog_inventory_reservation_columns</spinner>
+        <deps>
+            <dep>catalog_inventory_reservation_listing.catalog_inventory_reservation_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="catalog_inventory_reservation_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">MageOS\InventoryReservationsGrid\Ui\DataProvider\Reservation\ListingDataProvider</argument>
+            <argument name="name" xsi:type="string">catalog_inventory_reservation_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">reservation_id</argument>
+            <argument name="requestFieldName" xsi:type="string">reservation_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">reservation_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <settings>
+            <filterUrlParams>
+                <param name="id">*</param>
+            </filterUrlParams>
+        </settings>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters" component="Magento_Ui/js/grid/filters/filters">
+            <settings>
+                <childDefaults>
+                    <param name="provider" xsi:type="string">catalog_inventory_reservation_listing.catalog_inventory_reservation_listing.listing_top.listing_filters</param>
+                    <param name="imports" xsi:type="array">
+                        <item name="visible" xsi:type="string">catalog_inventory_reservation_listing.catalog_inventory_reservation_listing.listing_top.bookmarks:current.columns.${ $.index }.visible</item>
+                    </param>
+                </childDefaults>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="catalog_inventory_reservation_columns">
+        <column name="reservation_id">
+            <settings>
+                <filter>textRange</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Reservation ID</label>
+            </settings>
+        </column>
+        <column name="stock_id">
+            <settings>
+                <filter>textRange</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Stock ID</label>
+            </settings>
+        </column>
+        <column name="sku">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">SKU</label>
+            </settings>
+        </column>
+        <column name="quantity">
+            <settings>
+                <filter>textRange</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Quantity</label>
+            </settings>
+        </column>
+        <column name="metadata">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Metadata</label>
+            </settings>
+        </column>
+    </columns>
+</listing>
