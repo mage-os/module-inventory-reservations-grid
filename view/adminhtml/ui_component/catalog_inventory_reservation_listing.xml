@@ -51,41 +51,66 @@
                 </childDefaults>
             </settings>
         </filters>
+        <massaction name="listing_massaction" class="MageOS\InventoryReservationsGrid\Ui\Component\Reservation\DeleteMassAction">
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isAjax" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+                <settings>
+                    <url path="catalog_inventory/reservation/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                    <confirm>
+                        <message translate="true">Are you sure to delete selected Reservations?</message>
+                        <title translate="true">Delete Reservations</title>
+                    </confirm>
+                </settings>
+            </action>
+        </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="catalog_inventory_reservation_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>reservation_id</indexField>
+            </settings>
+        </selectionsColumn>
         <column name="reservation_id">
             <settings>
                 <filter>textRange</filter>
-                <sorting>asc</sorting>
+                <sorting>desc</sorting>
                 <label translate="true">Reservation ID</label>
             </settings>
         </column>
-        <column name="stock_id">
+        <column name="stock_id" component="Magento_Ui/js/grid/columns/select">
             <settings>
-                <filter>textRange</filter>
-                <sorting>asc</sorting>
-                <label translate="true">Stock ID</label>
+                <options class="MageOS\InventoryReservationsGrid\Model\Config\Source\Stock"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <sorting>desc</sorting>
+                <label translate="true">Stock</label>
             </settings>
         </column>
         <column name="sku">
             <settings>
                 <filter>text</filter>
-                <sorting>asc</sorting>
+                <sorting>desc</sorting>
                 <label translate="true">SKU</label>
             </settings>
         </column>
         <column name="quantity">
             <settings>
                 <filter>textRange</filter>
-                <sorting>asc</sorting>
+                <sorting>desc</sorting>
                 <label translate="true">Quantity</label>
             </settings>
         </column>
         <column name="metadata">
             <settings>
                 <filter>text</filter>
-                <sorting>asc</sorting>
+                <sorting>desc</sorting>
                 <label translate="true">Metadata</label>
             </settings>
         </column>

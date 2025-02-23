@@ -1,49 +1,39 @@
 <?php
+
 declare(strict_types=1);
 
 namespace MageOS\InventoryReservationsGrid\Block\Adminhtml\Reservation;
 
+use Magento\Framework\AuthorizationInterface;
+use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
- * Class CleanButton
+ * Block class for clean button on reservation list page.
  */
 class CleanButton implements ButtonProviderInterface
 {
     /**
-     * Url Builder
-     *
-     * @var \Magento\Framework\UrlInterface
-     */
-    protected $urlBuilder;
-
-    /**
-     * Registry
-     *
-     * @var \Magento\Framework\Registry
-     */
-    protected $registry;
-
-    /**
-     * Constructor
-     *
-     * @param \Magento\Backend\Block\Widget\Context $context
-     * @param \Magento\Framework\Registry $registry
+     * @param UrlInterface $urlBuilder
+     * @param AuthorizationInterface $authorization
      */
     public function __construct(
-        \Magento\Backend\Block\Widget\Context $context,
-        \Magento\Framework\Registry $registry
-    ) {
-        $this->urlBuilder = $context->getUrlBuilder();
-        $this->registry = $registry;
-    }
+        private readonly UrlInterface $urlBuilder,
+        private readonly AuthorizationInterface $authorization,
+    ) {}
 
     /**
+     * Provide data for clean button on reservation list page.
+     *
      * @return array
      */
-    public function getButtonData()
+    public function getButtonData(): array
     {
-        $data = [
+        if (!$this->authorization->isAllowed('MageOS_InventoryReservationsGrid::clean')) {
+            return [];
+        }
+
+        return [
             'label' => __('Clean Reservations'),
             'class' => 'clean primary',
             'data_attribute' => [
@@ -52,17 +42,16 @@ class CleanButton implements ButtonProviderInterface
             'on_click' => '',
             'sort_order' => 80,
         ];
-        return $data;
     }
 
     /**
-     * Generate url by route and parameters
+     * Generate url by route and parameters.
      *
-     * @param   string $route
-     * @param   array $params
+     * @param string $route
+     * @param array $params
      * @return  string
      */
-    public function getUrl($route = '', $params = [])
+    public function getUrl(string $route = '', array $params = []): string
     {
         return $this->urlBuilder->getUrl($route, $params);
     }

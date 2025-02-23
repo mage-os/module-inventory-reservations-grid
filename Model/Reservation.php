@@ -1,26 +1,23 @@
 <?php
+
 declare(strict_types=1);
+
 namespace MageOS\InventoryReservationsGrid\Model;
 
-use Magento\Framework\Api\ExtensibleDataInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Model\AbstractModel;
 
-class Reservation extends AbstractModel  implements ExtensibleDataInterface
+/**
+ * Reservation model
+ */
+class Reservation extends AbstractModel
 {
-
-    protected function _construct()
+    /**
+     * @return void
+     * @throws LocalizedException
+     */
+    protected function _construct(): void
     {
-        $this->_init(\MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation::class);
+        $this->_init(ResourceModel\Reservation::class);
     }
-
-    public function getCustomAttributes()
-    {
-        return [];
-    }
-
-    public function setCustomAttributes(array $attributes)
-    {
-        return $this;
-    }
-
 }
