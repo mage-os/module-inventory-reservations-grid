@@ -1,48 +1,61 @@
 <?php
+
 declare(strict_types=1);
+
 namespace MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation;
 
+use Magento\Framework\Api\Search\AggregationInterface;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use MageOS\InventoryReservationsGrid\Model\Reservation as ReservationModel;
 use MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation as ReservationResource;
 use Magento\Framework\Api\Search\SearchResultInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
+/**
+ * Reservation collection
+ */
 class Collection extends AbstractCollection implements SearchResultInterface
 {
+    /**
+     * @var AggregationInterface|null
+     */
+    private ?AggregationInterface $_aggregations = null;
 
     /**
-     * @var \Magento\Framework\Api\Search\AggregationInterface|null
+     * @var SearchCriteriaInterface|null
      */
-    private $_aggregations = null;
-
-    /**
-     * @var \Magento\Framework\Api\SearchCriteriaInterface|null
-     */
-    private $searchCriteria;
-
+    private ?SearchCriteriaInterface $searchCriteria;
 
     /**
      * List of fields to fulltext search
      */
-    private const FIELDS_TO_FULLTEXT_SEARCH = [
+    private const array FIELDS_TO_FULLTEXT_SEARCH = [
         'sku',
         'quantity',
         'metadata'
     ];
 
-
-    protected function _construct()
+    /**
+     * @return void
+     */
+    protected function _construct(): void
     {
         $this->_init(ReservationModel::class, ReservationResource::class);
     }
 
-    public function getAggregations()
+    /**
+     * @return AggregationInterface|null
+     */
+    public function getAggregations(): ?AggregationInterface
     {
         return $this->_aggregations;
     }
 
-    public function setAggregations($aggregations)
+    /**
+     * @param $aggregations
+     * @return $this
+     */
+    public function setAggregations($aggregations): Collection
     {
         $this->_aggregations = $aggregations;
         return $this;
@@ -51,35 +64,54 @@ class Collection extends AbstractCollection implements SearchResultInterface
     /**
      * Get search criteria.
      *
-     * @return \Magento\Framework\Api\SearchCriteriaInterface|null
+     * @return SearchCriteriaInterface|null
      */
-    public function getSearchCriteria()
+    public function getSearchCriteria(): ?SearchCriteriaInterface
     {
         return $this->searchCriteria;
     }
 
-    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria)
+    /**
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return $this
+     */
+    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria): Collection
     {
         $this->searchCriteria = $searchCriteria;
         return $this;
     }
 
-    public function getTotalCount()
+    /**
+     * @return int
+     */
+    public function getTotalCount(): int
     {
         return $this->getSize();
     }
 
-    public function setTotalCount($totalCount)
+    /**
+     * @param $totalCount
+     * @return $this
+     */
+    public function setTotalCount($totalCount): Collection
     {
         return $this;
     }
 
-    protected function _setItems(array $items)
+    /**
+     * @param array $items
+     * @return void
+     */
+    protected function _setItems(array $items): void
     {
         $this->_items = $items;
     }
 
-    public function setItems(array $items = null)
+    /**
+     * @param array|null $items
+     * @return $this
+     */
+    public function setItems(array $items = null): Collection
     {
         $this->_setItems($items);
         return $this;
@@ -91,7 +123,7 @@ class Collection extends AbstractCollection implements SearchResultInterface
      * @param string $value
      * @return $this
      */
-    public function addFullTextFilter(string $value)
+    public function addFullTextFilter(string $value): Collection
     {
         $fields = self::FIELDS_TO_FULLTEXT_SEARCH;
         $whereCondition = '';

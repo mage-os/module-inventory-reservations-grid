@@ -1,37 +1,54 @@
 <?php
+
 declare(strict_types=1);
+
 namespace MageOS\InventoryReservationsGrid\Controller\Adminhtml\Reservation;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\InventoryReservationsApi\Model\CleanupReservationsInterface;
-use Magento\Framework\Exception\LocalizedException;
+use Psr\Log\LoggerInterface;
 
+/**
+ * Controller for cleaning up compensated reservations.
+ */
 class Clean extends Action
 {
     /**
-     * @var CleanupReservationsInterface
+     * Authorization level of a basic admin session.
+     *
+     * @see MassDelete::_isAllowed()
      */
-    private $cleanupReservations;
+    const string ADMIN_RESOURCE = 'MageOS_InventoryReservationsGrid::clean';
 
+    /**
+     * @param Context $context
+     * @param CleanupReservationsInterface $cleanupReservations
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         Action\Context $context,
-        CleanupReservationsInterface $cleanupReservations,
+        private readonly CleanupReservationsInterface $cleanupReservations,
+        private readonly LoggerInterface $logger
     ) {
         parent::__construct($context);
-        $this->cleanupReservations = $cleanupReservations;
     }
 
     /**
-     * Cleanup reservations
+     * Cleanup reservations.
      *
-     * @return \Magento\Framework\Controller\Result\Redirect
+     * @return Redirect
      */
-    public function execute()
+    public function execute(): Redirect
     {
         try {
             $this->cleanupReservations->execute();
-        } catch (LocalizedException $exception) {
-            $this->messageManager->addErrorMessage($exception->getMessage());
+        } catch (\Exception $exception) {
+            $this->logger->error($exception->getLogMessage());
+            $this->messageManager->addErrorMessage(
+                __('Couldn\'t clean up reservations. Please see server logs for more details')
+            );
         }
 
         return $this->resultRedirectFactory->create()->setPath('catalog_inventory/reservation/index');

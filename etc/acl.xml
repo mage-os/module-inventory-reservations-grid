@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Catalog::catalog">
+                    <resource id="Magento_Catalog::catalog_inventory">
+                        <resource id="MageOS_InventoryReservationsGrid::reservation" title="Reservations" translate="title" sortOrder="10">
+                            <resource id="MageOS_InventoryReservationsGrid::view" title="Reservations" translate="title" sortOrder="10">
+                                <resource id="MageOS_InventoryReservationsGrid::clean" title="Clean balanced reservations" translate="title" sortOrder="20">
+                                    <resource id="MageOS_InventoryReservationsGrid::delete" title="Mass Delete Reservations" translate="title" sortOrder="10"/>
+                                </resource>
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
