@@ -1,5 +1,5 @@
 {
-    "name": "mageos/module-inventory-reservations-grid",
+    "name": "mage-os/module-inventory-reservations-grid",
     "description": "Add a grid with the list of inventory reservations.",
     "type": "magento2-module",
     "license": [
