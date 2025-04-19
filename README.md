@@ -12,7 +12,7 @@ The **MageOS Inventory Reservations Grid** module extends Magento's inventory ma
 ## Installation
 Install via Composer:
 ```sh
-composer require mage-os/inventory-reservations-grid
+composer require mage-os/module-inventory-reservations-grid
 bin/magento module:enable MageOS_InventoryReservationsGrid
 bin/magento setup:upgrade
 ```
