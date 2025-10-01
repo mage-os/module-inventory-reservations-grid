@@ -125,20 +125,17 @@ class Collection extends AbstractCollection implements SearchResultInterface
      */
     public function addFullTextFilter(string $value): Collection
     {
-        $fields = self::FIELDS_TO_FULLTEXT_SEARCH;
-        $whereCondition = '';
-        foreach ($fields as $key => $field) {
-            $field = 'main_table.' . $field;
-            $condition = $this->_getConditionSql(
-                $this->getConnection()->quoteIdentifier($field),
-                ['like' => "%$value%"]
+        if (!empty($value)) {
+            // Use addFieldToFilter with OR logic for multiple fields -- Magento handles escaping internally
+            $conditions = array_fill(
+                0,
+                count(self::FIELDS_TO_FULLTEXT_SEARCH),
+                ['like' => '%' . $value . '%']
             );
-            $whereCondition .= ($key === 0 ? '' : ' OR ') . $condition;
+            
+            $this->addFieldToFilter(self::FIELDS_TO_FULLTEXT_SEARCH, $conditions);
         }
-        if ($whereCondition) {
-            $this->getSelect()->where($whereCondition);
-        }
-
+        
         return $this;
     }
 }
