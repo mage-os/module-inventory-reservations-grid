@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace MageOS\InventoryReservationsGrid\Ui\DataProvider\Reservation;
 
-use MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation\CollectionFactory;
-use Magento\Customer\Model\ResourceModel\Address\Grid\Collection as GridCollection;
 use Magento\Framework\Api\Filter;
 use Magento\Ui\DataProvider\AbstractDataProvider;
+use MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation\Collection as GridCollection;
+use MageOS\InventoryReservationsGrid\Model\ResourceModel\Reservation\CollectionFactory;
 
 class ListingDataProvider extends AbstractDataProvider
 {
@@ -42,6 +42,4 @@ class ListingDataProvider extends AbstractDataProvider
             );
         }
     }
-
-
 }
