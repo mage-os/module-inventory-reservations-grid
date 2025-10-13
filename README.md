@@ -17,6 +17,10 @@ bin/magento module:enable MageOS_InventoryReservationsGrid
 bin/magento setup:upgrade
 ```
 
+## Usage
+
+Find the new Inventory Reservations report at **Stores > Inventory > Reservations**.
+
 ## Configuration
 Navigate to **Stores > Configuration > Catalog > Inventory > Reservation** to find the following setting:
 
@@ -25,19 +29,14 @@ Navigate to **Stores > Configuration > Catalog > Inventory > Reservation** to fi
     - Defaults to `0` (disabled).
     - Can be locked via `env.php` or `config.php`.
 
-### Example `config.php` Lock:
-```php
-return [
-    'system' => [
-        'default' => [
-            'cataloginventory' => [
-                'reservation' => [
-                    'allow_delete' => 0 // Locked to prevent enabling
-                ]
-            ]
-        ]
-    ]
-];
+### Blocking reservation deletion
+
+Deleting inventory reservations can be a dangerous action that leaves inventory in an inconsistent state, depending on how your system works. This feature is disabled by default.
+
+You can prevent reservation deletion from being enabled at all by running this command. This locks the setting to disabled in your `app/etc/env.php`.
+
+```bash
+bin/magento config:set --lock-env cataloginventory/reservation/allow_delete 0
 ```
 
 ## ACL Permissions
