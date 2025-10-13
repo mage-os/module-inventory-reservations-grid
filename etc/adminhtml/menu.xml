@@ -6,7 +6,7 @@
              title="Reservations"
              module="MageOS_InventoryReservationsGrid"
              sortOrder="50"
-             parent="Magento_Catalog::inventory"
+             parent="Magento_InventoryAdminUi::inventory"
              action="catalog_inventory/reservation/index"
              resource="MageOS_InventoryReservationsGrid::view"/>
     </menu>
