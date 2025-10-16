@@ -111,7 +111,7 @@ class Collection extends AbstractCollection implements SearchResultInterface
      * @param array|null $items
      * @return $this
      */
-    public function setItems(array $items = null): Collection
+    public function setItems(?array $items = null): Collection
     {
         $this->_setItems($items);
         return $this;
