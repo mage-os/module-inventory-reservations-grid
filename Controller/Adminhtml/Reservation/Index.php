@@ -18,7 +18,7 @@ class Index extends Action
      *
      * @see MassDelete::_isAllowed()
      */
-    const string ADMIN_RESOURCE = 'MageOS_InventoryReservationsGrid::view';
+    const ADMIN_RESOURCE = 'MageOS_InventoryReservationsGrid::view';
 
     /**
      * @param Action\Context $context
