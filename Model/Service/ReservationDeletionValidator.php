@@ -19,7 +19,7 @@ class ReservationDeletionValidator implements ReservationDeletionValidatorInterf
     /**
      * Path to the configuration setting for allowing reservation deletion.
      */
-    private const string PATH_ALLOW_DELETE = 'cataloginventory/reservation/allow_delete';
+    private const PATH_ALLOW_DELETE = 'cataloginventory/reservation/allow_delete';
 
     /**
      * @param ScopeConfigInterface $scopeConfig
