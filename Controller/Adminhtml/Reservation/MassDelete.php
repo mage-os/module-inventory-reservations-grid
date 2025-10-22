@@ -27,7 +27,7 @@ class MassDelete extends Action implements HttpPostActionInterface
      *
      * @see MassDelete::_isAllowed()
      */
-    const string ADMIN_RESOURCE = 'MageOS_InventoryReservationsGrid::delete';
+    const ADMIN_RESOURCE = 'MageOS_InventoryReservationsGrid::delete';
 
     /**
      * @param Context $context
