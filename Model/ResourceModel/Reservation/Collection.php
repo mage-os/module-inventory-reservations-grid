@@ -29,7 +29,7 @@ class Collection extends AbstractCollection implements SearchResultInterface
     /**
      * List of fields to fulltext search
      */
-    private const array FIELDS_TO_FULLTEXT_SEARCH = [
+    private const FIELDS_TO_FULLTEXT_SEARCH = [
         'sku',
         'quantity',
         'metadata'
