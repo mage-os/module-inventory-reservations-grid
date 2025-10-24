@@ -20,7 +20,7 @@ class Clean extends Action
      *
      * @see MassDelete::_isAllowed()
      */
-    const string ADMIN_RESOURCE = 'MageOS_InventoryReservationsGrid::clean';
+    const ADMIN_RESOURCE = 'MageOS_InventoryReservationsGrid::clean';
 
     /**
      * @param Context $context

@@ -14,7 +14,7 @@ class Reservation extends AbstractDb
     /**
      * Reservation table name
      */
-    public const string TABLE_NAME = 'inventory_reservation';
+    public const TABLE_NAME = 'inventory_reservation';
 
     /**
      * @return void
