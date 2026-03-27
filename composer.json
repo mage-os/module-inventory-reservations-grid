@@ -14,6 +14,7 @@
         "magento/module-catalog": "*",
         "magento/module-catalog-inventory": "*",
         "magento/module-inventory": "*",
+        "magento/module-inventory-admin-ui": "*",
         "magento/module-inventory-reservations-api": "*",
         "magento/module-inventory-reservations": "*"
     },
