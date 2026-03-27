@@ -12,6 +12,7 @@
             <module name="Magento_Inventory"/>
             <module name="Magento_InventoryReservationsApi"/>
             <module name="Magento_InventoryReservations"/>
+            <module name="Magento_InventoryAdminUi"/>
         </sequence>
     </module>
 </config>
