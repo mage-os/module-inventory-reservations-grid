@@ -19,17 +19,17 @@ class Collection extends AbstractCollection implements SearchResultInterface
     /**
      * @var AggregationInterface|null
      */
-    private ?AggregationInterface $_aggregations = null;
+    protected ?AggregationInterface $_aggregations = null;
 
     /**
      * @var SearchCriteriaInterface|null
      */
-    private ?SearchCriteriaInterface $searchCriteria;
+    protected ?SearchCriteriaInterface $searchCriteria;
 
     /**
      * List of fields to fulltext search
      */
-    private const FIELDS_TO_FULLTEXT_SEARCH = [
+    protected const FIELDS_TO_FULLTEXT_SEARCH = [
         'sku',
         'quantity',
         'metadata'
@@ -113,7 +113,7 @@ class Collection extends AbstractCollection implements SearchResultInterface
      */
     public function setItems(?array $items = null): Collection
     {
-        $this->_setItems($items);
+        $this->_setItems($items ?? []);
         return $this;
     }
 
