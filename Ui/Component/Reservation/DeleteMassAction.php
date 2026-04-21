@@ -14,6 +14,11 @@ use MageOS\InventoryReservationsGrid\Api\ReservationDeletionValidatorInterface;
 class DeleteMassAction extends MassAction
 {
     /**
+     * @var ReservationDeletionValidatorInterface
+     */
+    protected ReservationDeletionValidatorInterface $validator;
+
+    /**
      * @param ContextInterface $context
      * @param ReservationDeletionValidatorInterface $validator
      * @param array $components
