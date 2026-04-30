@@ -14,11 +14,6 @@ use MageOS\InventoryReservationsGrid\Api\ReservationDeletionValidatorInterface;
 class DeleteMassAction extends MassAction
 {
     /**
-     * @var ReservationDeletionValidatorInterface
-     */
-    protected ReservationDeletionValidatorInterface $validator;
-
-    /**
      * @param ContextInterface $context
      * @param ReservationDeletionValidatorInterface $validator
      * @param array $components
@@ -26,11 +21,10 @@ class DeleteMassAction extends MassAction
      */
     public function __construct(
         ContextInterface $context,
-        ReservationDeletionValidatorInterface $validator,
+        protected ReservationDeletionValidatorInterface $validator,
         array $components = [],
         array $data = []
     ) {
-        $this->validator = $validator;
         parent::__construct($context, $components, $data);
     }
 
