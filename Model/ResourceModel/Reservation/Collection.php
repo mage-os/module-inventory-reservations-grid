@@ -24,7 +24,7 @@ class Collection extends AbstractCollection implements SearchResultInterface
     /**
      * @var SearchCriteriaInterface|null
      */
-    protected ?SearchCriteriaInterface $searchCriteria;
+    protected ?SearchCriteriaInterface $searchCriteria = null;
 
     /**
      * List of fields to fulltext search
@@ -52,7 +52,7 @@ class Collection extends AbstractCollection implements SearchResultInterface
     }
 
     /**
-     * @param $aggregations
+     * @param AggregationInterface $aggregations
      * @return $this
      */
     public function setAggregations($aggregations): Collection
@@ -90,7 +90,7 @@ class Collection extends AbstractCollection implements SearchResultInterface
     }
 
     /**
-     * @param $totalCount
+     * @param int $totalCount
      * @return $this
      */
     public function setTotalCount($totalCount): Collection
