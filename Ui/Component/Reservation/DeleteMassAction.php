@@ -21,11 +21,10 @@ class DeleteMassAction extends MassAction
      */
     public function __construct(
         ContextInterface $context,
-        ReservationDeletionValidatorInterface $validator,
+        protected ReservationDeletionValidatorInterface $validator,
         array $components = [],
         array $data = []
     ) {
-        $this->validator = $validator;
         parent::__construct($context, $components, $data);
     }
 
